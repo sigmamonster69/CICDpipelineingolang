@@ -1,0 +1,41 @@
+# This is a GitHub Actions workflow file
+# It tells GitHub what to do when you push code or create a pull request
+
+name: CI Pipeline
+
+# When should this workflow run?
+on:
+  push:           # Run when someone pushes code to the repository
+    branches: [ main, master ]
+  pull_request:   # Run when someone creates a pull request
+    branches: [ main, master ]
+
+# What jobs should run?
+jobs:
+  test:
+    # Run on a fresh Ubuntu machine (GitHub provides this)
+    runs-on: ubuntu-latest
+    
+    # Steps are commands that run one after another
+    steps:
+      # Step 1: Get the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      # Step 2: Install Go on the machine
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.19'
+      
+      # Step 3: Download any dependencies (if needed)
+      - name: Install dependencies
+        run: go mod download
+      
+      # Step 4: Build the application (make sure it compiles)
+      - name: Build
+        run: go build -v ./...
+      
+      # Step 5: Run all the tests
+      - name: Test
+        run: go test -v ./...
