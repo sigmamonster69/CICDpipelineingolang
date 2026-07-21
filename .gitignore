@@ -1,32 +1,5 @@
 ```
-# Compiled and build artifacts
-*.o
-*.obj
-*.out
+# Documentation
+*.md
 
-# Dependencies
-vendor/
-
-# Logs and temp files
-*.log
-*.tmp
-
-# Environment
-.env
-.env.local
-.env.*
-
-# Editors
-.vscode/
-.idea/
-
-# Build outputs
-dist/
-build/
-target/
-
-# Package management
-node_modules/
-__pycache__/
-*.egg-info/
 ```
