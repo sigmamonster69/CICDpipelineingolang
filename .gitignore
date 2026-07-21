@@ -1,1 +1,32 @@
-Nothing needs to be added to .gitignore since only a markdown file (README_CI_CD_GUIDE.md) was added, which is a source/config file and should not be ignored.
+```
+# Compiled and build artifacts
+*.o
+*.obj
+*.out
+
+# Dependencies
+vendor/
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Environment
+.env
+.env.local
+.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# Build outputs
+dist/
+build/
+target/
+
+# Package management
+node_modules/
+__pycache__/
+*.egg-info/
+```
