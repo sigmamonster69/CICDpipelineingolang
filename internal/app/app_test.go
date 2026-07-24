@@ -23,6 +23,12 @@ func TestMultiply(t *testing.T) {
 	}
 }
 
+func TestSquare(t *testing.T) {
+	if got := Square(6); got != 36 {
+		t.Fatalf("Square(6) = %d, want 36", got)
+	}
+}
+
 func TestSubtract(t *testing.T) {
 	if got := Subtract(10, 4); got != 6 {
 		t.Fatalf("Subtract(10, 4) = %d, want 6", got)
@@ -50,7 +56,7 @@ func TestIsEven(t *testing.T) {
 
 func TestBuildReport(t *testing.T) {
 	got := BuildReport("sam", 2, 3)
-	want := "hello sam | sum=5 | product=6 | difference=-1 | even=true"
+	want := "hello sam | sum=5 | product=6 | square=4 | difference=-1 | even=true"
 
 	if got != want {
 		t.Fatalf("BuildReport() = %q, want %q", got, want)
