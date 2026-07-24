@@ -1,4 +1,5 @@
 # CICDpipelineingolang
+I am bulding a CICD pipeline to help prepare for my role for a incoming job by building this all using golang
 
 A small Go-based CI/CD learning scaffold.
 
