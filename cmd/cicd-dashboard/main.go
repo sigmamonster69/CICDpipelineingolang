@@ -1,59 +1,59 @@
 package main
 
 import (
-\t"log"
-\t"net/http"
-\t"os"
+	"log"
+	"net/http"
+	"os"
 
-\t"github.com/sigmamonster69/CICDpipelineingolang/internal/app"
-\t"github.com/sigmamonster69/CICDpipelineingolang/internal/ui"
+	"github.com/sigmamonster69/CICDpipelineingolang/internal/app"
+	"github.com/sigmamonster69/CICDpipelineingolang/internal/ui"
 )
 
 func main() {
-\tstateDir, err := os.Getwd()
-\tif err != nil {
-\t\tlog.Fatal(err)
-\t}
+	stateDir, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
 
-\thttp.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-\t\ttasks, err := ui.LoadTasks(stateDir)
-\t\tif err != nil {
-\t\t\thttp.Error(w, err.Error(), http.StatusInternalServerError)
-\t\t\treturn
-\t\t}
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		tasks, err := ui.LoadTasks(stateDir)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
 
-\t\ttaskName := r.URL.Query().Get("task")
-\t\tif taskName != "" {
-\t\t\tif r.URL.Query().Get("done") == "1" {
-\t\t\t\ttasks = ui.UpdateTaskStatus(tasks, taskName, true)
-\t\t\t}
-\t\t\tif r.URL.Query().Get("undo") == "1" {
-\t\t\t\ttasks = ui.UpdateTaskStatus(tasks, taskName, false)
-\t\t\t}
-\t\t\tif err := ui.SaveTasks(stateDir, tasks); err != nil {
-\t\t\t\thttp.Error(w, err.Error(), http.StatusInternalServerError)
-\t\t\t\treturn
-\t\t\t}
-\t\t\thttp.Redirect(w, r, "/", http.StatusSeeOther)
-\t\t\treturn
-\t\t}
+		taskName := r.URL.Query().Get("task")
+		if taskName != "" {
+			if r.URL.Query().Get("done") == "1" {
+				tasks = ui.UpdateTaskStatus(tasks, taskName, true)
+			}
+			if r.URL.Query().Get("undo") == "1" {
+				tasks = ui.UpdateTaskStatus(tasks, taskName, false)
+			}
+			if err := ui.SaveTasks(stateDir, tasks); err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
+			http.Redirect(w, r, "/", http.StatusSeeOther)
+			return
+		}
 
-\t\thtml, err := ui.RenderDashboard(ui.PageData{
-\t\t\tTitle:       "CI/CD learning dashboard",
-\t\t\tDescription: "A tiny browser view for the Go CI/CD learning project.",
-\t\t\tMessage:     app.Message(),
-\t\t\tReport:      app.BuildReport("sam", 2, 3),
-\t\t\tTasks:       tasks,
-\t\t})
-\t\tif err != nil {
-\t\t\thttp.Error(w, err.Error(), http.StatusInternalServerError)
-\t\t\treturn
-\t\t}
+		html, err := ui.RenderDashboard(ui.PageData{
+			Title:       "CI/CD learning dashboard",
+			Description: "A tiny browser view for the Go CI/CD learning project.",
+			Message:     app.Message(),
+			Report:      app.BuildReport("sam", 2, 3),
+			Tasks:       tasks,
+		})
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
 
-\t\tw.Header().Set("Content-Type", "text/html; charset=utf-8")
-\t\t_, _ = w.Write([]byte(html))
-\t})
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		_, _ = w.Write([]byte(html))
+	})
 
-\tlog.Println("dashboard running on http://localhost:8080")
-\tlog.Fatal(http.ListenAndServe(":8080", nil))
+	log.Println("dashboard running on http://localhost:8080")
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }

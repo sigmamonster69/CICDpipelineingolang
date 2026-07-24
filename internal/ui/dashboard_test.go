@@ -1,35 +1,35 @@
 package ui
 
 import (
-\t"strings"
-\t"testing"
+	"strings"
+	"testing"
 )
 
 func TestRenderDashboard(t *testing.T) {
-\thtml, err := RenderDashboard(PageData{
-\t\tTitle:   "Demo",
-\t\tMessage: "OK",
-\t\tReport:  "hello world",
-\t})
-\tif err != nil {
-\t\tt.Fatalf("RenderDashboard() error = %v", err)
-\t}
-\tif html == "" {
-\t\tt.Fatal("RenderDashboard() returned empty html")
-\t}
-\tif want := "<title>Demo</title>"; !strings.Contains(html, want) {
-\t\tt.Fatalf("RenderDashboard() missing %q", want)
-\t}
+	html, err := RenderDashboard(PageData{
+		Title:   "Demo",
+		Message: "OK",
+		Report:  "hello world",
+	})
+	if err != nil {
+		t.Fatalf("RenderDashboard() error = %v", err)
+	}
+	if html == "" {
+		t.Fatal("RenderDashboard() returned empty html")
+	}
+	if want := "<title>Demo</title>"; !strings.Contains(html, want) {
+		t.Fatalf("RenderDashboard() missing %q", want)
+	}
 }
 
 func TestUpdateTaskStatus(t *testing.T) {
-\ttasks := DefaultTasks()
-\ttasks = UpdateTaskStatus(tasks, "Read ROADMAP.txt", true)
+	tasks := DefaultTasks()
+	tasks = UpdateTaskStatus(tasks, "Read ROADMAP.txt", true)
 
-\tif !tasks[0].Done {
-\t\tt.Fatal("expected task to be marked done")
-\t}
-\tif tasks[0].DoneAt == "" {
-\t\tt.Fatal("expected done date to be set")
-\t}
+	if !tasks[0].Done {
+		t.Fatal("expected task to be marked done")
+	}
+	if tasks[0].DoneAt == "" {
+		t.Fatal("expected done date to be set")
+	}
 }

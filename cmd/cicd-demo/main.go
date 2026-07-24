@@ -1,12 +1,12 @@
 package main
 
 import (
-\t"fmt"
+	"fmt"
 
-\t"github.com/sigmamonster69/CICDpipelineingolang/internal/app"
+	"github.com/sigmamonster69/CICDpipelineingolang/internal/app"
 )
 
 func main() {
-\tfmt.Println(app.Message())
-\tfmt.Printf("%s\\n", app.BuildReport("sam", 2, 3))
+	fmt.Println(app.Message())
+	fmt.Printf("%s\n", app.BuildReport("sam", 2, 3))
 }
