@@ -4,17 +4,17 @@ import (
 	"fmt"
 )
 
-// Greeting returns a greeting message for the given name
+// Greeting returns a greeting message for the given name.
 func Greeting(name string) string {
 	return fmt.Sprintf("Hello, %s!", name)
 }
 
-// Add returns the sum of two integers
+// Add returns the sum of two integers.
 func Add(a, b int) int {
 	return a + b
 }
 
-// Factorial calculates the factorial of a non-negative integer
+// Factorial calculates the factorial of a non-negative integer.
 func Factorial(n int) int {
 	if n <= 1 {
 		return 1
@@ -22,7 +22,7 @@ func Factorial(n int) int {
 	return n * Factorial(n-1)
 }
 
-// Fibonacci returns the nth Fibonacci number
+// Fibonacci returns the nth Fibonacci number.
 func Fibonacci(n int) int {
 	if n <= 1 {
 		return n
@@ -30,16 +30,16 @@ func Fibonacci(n int) int {
 	return Fibonacci(n-1) + Fibonacci(n-2)
 }
 
-// ReverseString reverses a string
+// ReverseString reverses a string.
 func ReverseString(s string) string {
 	runes := []rune(s)
-	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
-		runes[i], runes[j] = runes[j], runes[i]
+	for f, j := 0, len(runes)-1; f < j; f, j = f+1, j-1 {
+		runes[f], runes[j] = runes[j], runes[f]
 	}
 	return string(runes)
 }
 
-// PrintGreeting prints a greeting to stdout
+// PrintGreeting prints a greeting to stdout.
 func PrintGreeting() {
 	fmt.Println("Hello, World!")
 }

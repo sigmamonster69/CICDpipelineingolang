@@ -24,7 +24,7 @@ func TestRenderDashboard(t *testing.T) {
 
 func TestUpdateTaskStatus(t *testing.T) {
 	tasks := DefaultTasks()
-	tasks = UpdateTaskStatus(tasks, "Read ROADMAP.txt", true)
+	tasks = UpdateTaskStatus(tasks, "Read the task board in the website", true)
 
 	if !tasks[0].Done {
 		t.Fatal("expected task to be marked done")

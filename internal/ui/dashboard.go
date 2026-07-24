@@ -154,12 +154,11 @@ var dashboardTmpl = template.Must(template.New("dashboard").Parse(`
 // DefaultTasks returns the checklist to show in the dashboard.
 func DefaultTasks() []Task {
 	return []Task{
-		{Name: "Read ROADMAP.txt"},
-		{Name: "Read TOOLS.txt"},
-		{Name: "Read NEXT_STEPS.txt"},
+		{Name: "Read the task board in the website"},
 		{Name: "Open .github/workflows/ci.yml"},
 		{Name: "Open internal/app/app.go"},
 		{Name: "Open internal/app/app_test.go"},
+		{Name: "Open practice.go"},
 		{Name: "Try to explain each file in your own words"},
 		{Name: "Add one tiny Go function yourself"},
 		{Name: "Add a test for that function"},
