@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+\t"fmt"
+
+\t"github.com/sigmamonster69/CICDpipelineingolang/internal/demo"
+)
 
 func main() {
-\tfmt.Println("CI/CD pipeline learning scaffold is ready.")
+\tfmt.Println(demo.Message())
 }
