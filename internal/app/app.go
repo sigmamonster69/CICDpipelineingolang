@@ -1,38 +1,44 @@
 package app
 
 import (
-\t"fmt"
-\t"strings"
+	"fmt"
+	"strings"
 )
 
 // Message returns the text the demo app prints.
 func Message() string {
-\treturn "CI/CD pipeline learning scaffold is ready."
+	return "CI/CD pipeline learning scaffold is ready."
 }
 
 // Add returns the sum of two numbers.
 func Add(a, b int) int {
-\treturn a + b
+	return a + b
 }
 
 // Multiply returns the product of two numbers.
 func Multiply(a, b int) int {
-\treturn a * b
+	return a * b
+}
+
+// Subtract returns the difference between two numbers.
+func Subtract(a, b int) int {
+	return a - b
 }
 
 // IsEven reports whether n is even.
 func IsEven(n int) bool {
-\treturn n%2 == 0
+	return n%2 == 0
 }
 
 // BuildReport formats a short learning report from the basic helpers.
 func BuildReport(name string, a, b int) string {
-\tparts := []string{
-\t\tfmt.Sprintf("hello %s", name),
-\t\tfmt.Sprintf("sum=%d", Add(a, b)),
-\t\tfmt.Sprintf("product=%d", Multiply(a, b)),
-\t\tfmt.Sprintf("even=%t", IsEven(a)),
-\t}
+	parts := []string{
+		fmt.Sprintf("hello %s", name),
+		fmt.Sprintf("sum=%d", Add(a, b)),
+		fmt.Sprintf("product=%d", Multiply(a, b)),
+		fmt.Sprintf("difference=%d", Subtract(a, b)),
+		fmt.Sprintf("even=%t", IsEven(a)),
+	}
 
-\treturn strings.Join(parts, " | ")
+	return strings.Join(parts, " | ")
 }

@@ -3,50 +3,56 @@ package app
 import "testing"
 
 func TestMessage(t *testing.T) {
-\tgot := Message()
-\twant := "CI/CD pipeline learning scaffold is ready."
+	got := Message()
+	want := "CI/CD pipeline learning scaffold is ready."
 
-\tif got != want {
-\t\tt.Fatalf("Message() = %q, want %q", got, want)
-\t}
+	if got != want {
+		t.Fatalf("Message() = %q, want %q", got, want)
+	}
 }
 
 func TestAdd(t *testing.T) {
-\tif got := Add(2, 3); got != 5 {
-\t\tt.Fatalf("Add(2, 3) = %d, want 5", got)
-\t}
+	if got := Add(2, 3); got != 5 {
+		t.Fatalf("Add(2, 3) = %d, want 5", got)
+	}
 }
 
 func TestMultiply(t *testing.T) {
-\tif got := Multiply(4, 5); got != 20 {
-\t\tt.Fatalf("Multiply(4, 5) = %d, want 20", got)
-\t}
+	if got := Multiply(4, 5); got != 20 {
+		t.Fatalf("Multiply(4, 5) = %d, want 20", got)
+	}
+}
+
+func TestSubtract(t *testing.T) {
+	if got := Subtract(10, 4); got != 6 {
+		t.Fatalf("Subtract(10, 4) = %d, want 6", got)
+	}
 }
 
 func TestIsEven(t *testing.T) {
-\ttests := []struct {
-\t\tname string
-\t\tn    int
-\t\twant bool
-\t}{
-\t\t{name: "even", n: 4, want: true},
-\t\t{name: "odd", n: 3, want: false},
-\t}
+	tests := []struct {
+		name string
+		n    int
+		want bool
+	}{
+		{name: "even", n: 4, want: true},
+		{name: "odd", n: 3, want: false},
+	}
 
-\tfor _, tt := range tests {
-\t\tt.Run(tt.name, func(t *testing.T) {
-\t\t\tif got := IsEven(tt.n); got != tt.want {
-\t\t\t\tt.Fatalf("IsEven(%d) = %t, want %t", tt.n, got, tt.want)
-\t\t\t}
-\t\t})
-\t}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := IsEven(tt.n); got != tt.want {
+				t.Fatalf("IsEven(%d) = %t, want %t", tt.n, got, tt.want)
+			}
+		})
+	}
 }
 
 func TestBuildReport(t *testing.T) {
-\tgot := BuildReport("sam", 2, 3)
-\twant := "hello sam | sum=5 | product=6 | even=true"
+	got := BuildReport("sam", 2, 3)
+	want := "hello sam | sum=5 | product=6 | difference=-1 | even=true"
 
-\tif got != want {
-\t\tt.Fatalf("BuildReport() = %q, want %q", got, want)
-\t}
+	if got != want {
+		t.Fatalf("BuildReport() = %q, want %q", got, want)
+	}
 }
