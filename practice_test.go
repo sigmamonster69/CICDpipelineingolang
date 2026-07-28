@@ -60,3 +60,12 @@ func TestMin(t *testing.T) {
 		t.Fatalf("Min(9, 4) = %d, want 4", got)
 	}
 }
+
+func TestAbs(t *testing.T) {
+	if got := Abs(-7); got != 7 {
+		t.Fatalf("Abs(-7) = %d, want 7", got)
+	}
+	if got := Abs(5); got != 5 {
+		t.Fatalf("Abs(5) = %d, want 5", got)
+	}
+}
