@@ -51,3 +51,12 @@ func TestMax(t *testing.T) {
 		t.Fatalf("Max(9, 4) = %d, want 9", got)
 	}
 }
+
+func TestMin(t *testing.T) {
+	if got := Min(2, 3); got != 2 {
+		t.Fatalf("Min(2, 3) = %d, want 2", got)
+	}
+	if got := Min(9, 4); got != 4 {
+		t.Fatalf("Min(9, 4) = %d, want 4", got)
+	}
+}
