@@ -29,6 +29,15 @@ A small Go-based CI/CD learning scaffold.
 
 Use the dashboard task board as your reading and checklist surface, then add a lint step and a Docker build so you can see the pipeline evolve one piece at a time.
 
+## How to make more contributions
+
+- Pick one small file.
+- Change one tiny thing.
+- Commit it.
+- Push it to GitHub.
+- Check the update on GitHub.
+- Repeat with another small change.
+
 ## Dashboard
 
 Run `cmd/cicd-dashboard` to open a tiny task board in the browser.

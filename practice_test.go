@@ -33,3 +33,21 @@ func TestReverseString(t *testing.T) {
 		t.Fatalf("ReverseString() = %q, want %q", got, "xedoc")
 	}
 }
+
+func TestIsPalindrome(t *testing.T) {
+	if !IsPalindrome("level") {
+		t.Fatal("IsPalindrome(level) = false, want true")
+	}
+	if IsPalindrome("hello") {
+		t.Fatal("IsPalindrome(hello) = true, want false")
+	}
+}
+
+func TestMax(t *testing.T) {
+	if got := Max(2, 3); got != 3 {
+		t.Fatalf("Max(2, 3) = %d, want 3", got)
+	}
+	if got := Max(9, 4); got != 9 {
+		t.Fatalf("Max(9, 4) = %d, want 9", got)
+	}
+}

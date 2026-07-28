@@ -39,7 +39,20 @@ func ReverseString(s string) string {
 	return string(runes)
 }
 
+// IsPalindrome reports whether a string reads the same forwards and backwards.
+func IsPalindrome(s string) bool {
+	return ReverseString(s) == s
+}
+
 // PrintGreeting prints a greeting to stdout.
 func PrintGreeting() {
 	fmt.Println("Hello, World!")
+}
+
+// Max returns the larger of two integers.
+func Max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
