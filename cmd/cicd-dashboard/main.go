@@ -12,7 +12,7 @@ import (
 func main() {
 	stateDir, err := os.Getwd()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal(err) // all used for the ci cd pieplines
 	}
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {

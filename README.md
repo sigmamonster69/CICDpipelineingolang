@@ -7,13 +7,14 @@ A small Go-based CI/CD learning scaffold.
 
 - `cmd/cicd-demo/main.go` - a tiny Go app to build in CI
 - `cmd/cicd-dashboard/main.go` - a tiny browser dashboard for the same project
+- `practice.go` - extra small Go practice helpers
+- `practice_test.go` - tests for the practice helpers
 - `internal/app/app.go` - the basic app logic and helper functions
 - `internal/app/app_test.go` - unit tests for the helper functions
 - `internal/ui/dashboard.go` - HTML rendering for the dashboard
 - `internal/ui/dashboard_test.go` - unit test for the dashboard renderer
 - `go.mod` - module definition for the Go project
 - `.github/workflows/ci.yml` - starter GitHub Actions CI workflow
-- `docs/ci-cd-basics.md` - explanation of the pipeline pieces
 
 ## What this teaches
 
@@ -27,7 +28,16 @@ A small Go-based CI/CD learning scaffold.
 
 ## Suggested next step
 
-Read `docs/ci-cd-basics.md`, then add a lint step and a Docker build so you can see the pipeline evolve one piece at a time.
+Use the dashboard task board as your reading and checklist surface, then add a lint step and a Docker build so you can see the pipeline evolve one piece at a time.
+
+## How to make more contributions
+
+- Pick one small file.
+- Change one tiny thing.
+- Commit it.
+- Push it to GitHub.
+- Check the update on GitHub.
+- Repeat with another small change.
 
 ## Dashboard
 

@@ -20,6 +20,11 @@ func Multiply(a, b int) int {
 	return a * b
 }
 
+// Square returns n multiplied by itself.
+func Square(n int) int {
+	return n * n
+}
+
 // Subtract returns the difference between two numbers.
 func Subtract(a, b int) int {
 	return a - b
@@ -36,6 +41,7 @@ func BuildReport(name string, a, b int) string {
 		fmt.Sprintf("hello %s", name),
 		fmt.Sprintf("sum=%d", Add(a, b)),
 		fmt.Sprintf("product=%d", Multiply(a, b)),
+		fmt.Sprintf("square=%d", Square(a)),
 		fmt.Sprintf("difference=%d", Subtract(a, b)),
 		fmt.Sprintf("even=%t", IsEven(a)),
 	}
