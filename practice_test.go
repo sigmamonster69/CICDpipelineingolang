@@ -69,3 +69,12 @@ func TestAbs(t *testing.T) {
 		t.Fatalf("Abs(5) = %d, want 5", got)
 	}
 }
+
+func TestIsOdd(t *testing.T) {
+	if !IsOdd(7) {
+		t.Fatal("IsOdd(7) = false, want true")
+	}
+	if IsOdd(8) {
+		t.Fatal("IsOdd(8) = true, want false")
+	}
+}

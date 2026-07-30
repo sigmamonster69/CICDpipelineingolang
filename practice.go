@@ -72,3 +72,8 @@ func Abs(n int) int {
 	}
 	return n
 }
+
+// IsOdd reports whether n is odd.
+func IsOdd(n int) bool {
+	return n%2 != 0
+}
