@@ -17,10 +17,10 @@ func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tasks, err := ui.LoadTasks(stateDir)
-		if err != nil {
+		if err != nil { 
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
-		}
+		} //all good 
 
 		taskName := r.URL.Query().Get("task")
 		if taskName != "" {
