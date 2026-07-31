@@ -1,1 +1,38 @@
-.task-state.json
+```
+# Go build artifacts
+*.exe
+*.dll
+*.so
+*.a
+*.o
+*.obj
+*.out
+
+# Go cache and test artifacts
+.coverage
+coverage/
+htmlcov/
+
+# Dependencies
+vendor/
+go/pkg/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# System
+.DS_Store
+Thumbs.db
+```
