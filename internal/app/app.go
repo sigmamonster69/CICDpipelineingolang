@@ -21,6 +21,7 @@ func Message() string {
 // Parameters:
 //   - a: first integer operand
 //   - b: second integer operand
+//
 // Returns:
 //   - int: the sum of a and b
 func Add(a, b int) int {
@@ -33,6 +34,7 @@ func Add(a, b int) int {
 // Parameters:
 //   - a: first integer operand (multiplicand)
 //   - b: second integer operand (multiplier)
+//
 // Returns:
 //   - int: the product of a and b
 func Multiply(a, b int) int {
@@ -44,6 +46,7 @@ func Multiply(a, b int) int {
 // This function shows how utility functions are documented and tested.
 // Parameters:
 //   - n: the integer to square
+//
 // Returns:
 //   - int: n squared (n × n)
 func Square(n int) int {
@@ -56,6 +59,7 @@ func Square(n int) int {
 // Parameters:
 //   - a: minuend (the number from which another is subtracted)
 //   - b: subtrahend (the number to subtract)
+//
 // Returns:
 //   - int: the result of subtracting b from a
 func Subtract(a, b int) int {
@@ -67,6 +71,7 @@ func Subtract(a, b int) int {
 // Even/odd checks are common in algorithms and data processing.
 // Parameters:
 //   - n: the integer to check
+//
 // Returns:
 //   - bool: true if n is even, false if odd
 func IsEven(n int) bool {
@@ -81,17 +86,18 @@ func IsEven(n int) bool {
 //   - name: the name to include in the greeting
 //   - a: first integer for arithmetic operations
 //   - b: second integer for arithmetic operations
+//
 // Returns:
 //   - string: a formatted report with pipe-separated values
 func BuildReport(name string, a, b int) string {
 	// Build a slice of report parts, each showing a different calculation
 	parts := []string{
-		fmt.Sprintf("hello %s", name),           // Greeting with provided name
-		fmt.Sprintf("sum=%d", Add(a, b)),        // Sum of a and b
-		fmt.Sprintf("product=%d", Multiply(a, b)), // Product of a and b
-		fmt.Sprintf("square=%d", Square(a)),     // Square of a
+		fmt.Sprintf("hello %s", name),                // Greeting with provided name
+		fmt.Sprintf("sum=%d", Add(a, b)),             // Sum of a and b
+		fmt.Sprintf("product=%d", Multiply(a, b)),    // Product of a and b
+		fmt.Sprintf("square=%d", Square(a)),          // Square of a
 		fmt.Sprintf("difference=%d", Subtract(a, b)), // Difference: a - b
-		fmt.Sprintf("even=%t", IsEven(a)),       // Whether a is even
+		fmt.Sprintf("even=%t", IsEven(a)),            // Whether a is even
 	}
 
 	// Join all parts with pipe separator for easy parsing

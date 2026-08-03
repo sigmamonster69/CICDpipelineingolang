@@ -10,6 +10,7 @@ import (
 // how automated tests validate string manipulation functions.
 // Parameters:
 //   - name: the name to include in the greeting (can be any string)
+//
 // Returns:
 //   - string: a formatted greeting like "Hello, {name}!"
 func Greeting(name string) string {
@@ -23,6 +24,7 @@ func Greeting(name string) string {
 // Parameters:
 //   - a: first integer operand
 //   - b: second integer operand
+//
 // Returns:
 //   - int: the sum of a and b
 func Add(a, b int) int {
@@ -36,6 +38,7 @@ func Add(a, b int) int {
 // Note: For large values of n, this may cause stack overflow.
 // Parameters:
 //   - n: a non-negative integer (n >= 0)
+//
 // Returns:
 //   - int: the factorial of n (returns 1 for n <= 1)
 func Factorial(n int) int {
@@ -54,6 +57,7 @@ func Factorial(n int) int {
 // In production, consider using memoization or iterative approaches.
 // Parameters:
 //   - n: the position in the Fibonacci sequence (0-indexed)
+//
 // Returns:
 //   - int: the nth Fibonacci number (returns n for n <= 1)
 func Fibonacci(n int) int {
@@ -72,6 +76,7 @@ func Fibonacci(n int) int {
 // of multi-byte UTF-8 characters.
 // Parameters:
 //   - s: the input string to reverse
+//
 // Returns:
 //   - string: the reversed string (empty string if input is empty)
 func ReverseString(s string) string {
@@ -91,6 +96,7 @@ func ReverseString(s string) string {
 // Examples: "level", "radar", "hello" (false)
 // Parameters:
 //   - s: the string to check for palindrome property
+//
 // Returns:
 //   - bool: true if the string is a palindrome, false otherwise
 func IsPalindrome(s string) bool {
@@ -113,6 +119,7 @@ func PrintGreeting() {
 // Parameters:
 //   - a: first integer to compare
 //   - b: second integer to compare
+//
 // Returns:
 //   - int: the greater value between a and b (returns a if equal)
 func Max(a, b int) int {
@@ -129,6 +136,7 @@ func Max(a, b int) int {
 // Parameters:
 //   - a: first integer to compare
 //   - b: second integer to compare
+//
 // Returns:
 //   - int: the lesser value between a and b (returns a if equal)
 func Min(a, b int) int {
@@ -144,6 +152,7 @@ func Min(a, b int) int {
 // This function demonstrates sign checking and negation operations in Go.
 // Parameters:
 //   - n: the integer to get the absolute value of
+//
 // Returns:
 //   - int: the absolute (non-negative) value of n
 func Abs(n int) int {

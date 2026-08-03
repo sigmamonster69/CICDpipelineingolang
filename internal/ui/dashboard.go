@@ -18,9 +18,9 @@ const stateFileName = ".task-state.json"
 // Each task tracks its name, completion status, and optional completion date.
 // The Suggested field indicates whether this is a recommended learning activity.
 type Task struct {
-	Name      string `json:"name"`       // Display name of the task
-	Done      bool   `json:"done"`       // Whether the task has been completed
-	DoneAt    string `json:"done_at,omitempty"` // Date when task was completed (YYYY-MM-DD format)
+	Name      string `json:"name"`                // Display name of the task
+	Done      bool   `json:"done"`                // Whether the task has been completed
+	DoneAt    string `json:"done_at,omitempty"`   // Date when task was completed (YYYY-MM-DD format)
 	Suggested bool   `json:"suggested,omitempty"` // Whether this is a suggested task
 }
 
@@ -293,6 +293,7 @@ func DefaultNotes() []string {
 // The state is stored as JSON in the .task-state.json file.
 // Parameters:
 //   - dir: directory path where the state file should be located
+//
 // Returns:
 //   - []Task: loaded tasks with their completion state, or defaults if file doesn't exist
 //   - error: any error encountered during file reading or JSON parsing
@@ -300,7 +301,7 @@ func LoadTasks(dir string) ([]Task, error) {
 	// Start with default tasks
 	tasks := DefaultTasks()
 	path := filepath.Join(dir, stateFileName)
-	
+
 	// Try to read the state file
 	data, err := os.ReadFile(path)
 	if err != nil {
@@ -311,7 +312,7 @@ func LoadTasks(dir string) ([]Task, error) {
 		// Return error for other read failures
 		return nil, err
 	}
-	
+
 	// Parse JSON data into tasks slice
 	if err := json.Unmarshal(data, &tasks); err != nil {
 		return nil, err
@@ -324,17 +325,18 @@ func LoadTasks(dir string) ([]Task, error) {
 // Parameters:
 //   - dir: directory path where the state file should be written
 //   - tasks: slice of tasks with their current completion state
+//
 // Returns:
 //   - error: any error encountered during JSON marshaling or file writing
 func SaveTasks(dir string, tasks []Task) error {
 	path := filepath.Join(dir, stateFileName)
-	
+
 	// Marshal tasks to formatted JSON
 	data, err := json.MarshalIndent(tasks, "", "  ")
 	if err != nil {
 		return err
 	}
-	
+
 	// Write to file with standard permissions (readable/writable by owner, readable by others)
 	return os.WriteFile(path, data, 0o644)
 }
@@ -345,6 +347,7 @@ func SaveTasks(dir string, tasks []Task) error {
 //   - tasks: slice of tasks to update (modified in place)
 //   - taskName: name of the task to update (exact match required)
 //   - done: true to mark complete, false to mark incomplete
+//
 // Returns:
 //   - []Task: the updated tasks slice (same reference as input)
 func UpdateTaskStatus(tasks []Task, taskName string, done bool) []Task {
@@ -367,6 +370,7 @@ func UpdateTaskStatus(tasks []Task, taskName string, done bool) []Task {
 // It applies default values for any empty fields and executes the HTML template.
 // Parameters:
 //   - data: PageData struct containing all information to display
+//
 // Returns:
 //   - string: rendered HTML as a string
 //   - error: any template execution error
@@ -384,14 +388,14 @@ func RenderDashboard(data PageData) (string, error) {
 	if data.Report == "" {
 		data.Report = fmt.Sprintf("No report data yet for %s.", data.Title)
 	}
-	
+
 	// Use default tasks if none provided
 	if len(data.Tasks) == 0 {
 		for _, task := range DefaultTasks() {
 			data.Tasks = append(data.Tasks, task)
 		}
 	}
-	
+
 	// Use default notes if none provided
 	if len(data.Notes) == 0 {
 		data.Notes = DefaultNotes()
