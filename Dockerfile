@@ -1,24 +1,17 @@
-# CI/CD Demo Application Dockerfile
-# This creates a portable container with our Go app
+FROM golang:1.22-alpine AS build
 
-# Step 1: Use official Go image as the base (includes Go compiler)
-FROM golang:1.19-alpine
+WORKDIR /src
 
-# Step 2: Set working directory inside the container
-WORKDIR /app
-
-# Step 3: Copy go.mod first for better Docker caching
-# (If go.mod doesn't change, Docker reuses cached layer)
 COPY go.mod ./
-
-# Step 4: Download dependencies (none in this simple case)
 RUN go mod download
 
-# Step 5: Copy all source code into the container
 COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -o /out/cicd-dashboard ./cmd/cicd-dashboard
 
-# Step 6: Build the Go application into an executable
-RUN go build -o myapp .
+FROM alpine:3.20
 
-# Step 7: Define what runs when container starts
-CMD ["./myapp"]
+WORKDIR /app
+COPY --from=build /out/cicd-dashboard /app/cicd-dashboard
+
+EXPOSE 8080
+ENTRYPOINT ["/app/cicd-dashboard"]
