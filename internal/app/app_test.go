@@ -2,9 +2,6 @@ package app
 
 import "testing"
 
-// TestMessage verifies that the Message function returns the expected status text.
-// This is a basic smoke test to ensure the application initializes correctly.
-// The CI pipeline runs this test to confirm the build is functioning.
 func TestMessage(t *testing.T) {
 	got := Message()
 	want := "CI/CD pipeline learning scaffold is ready."
@@ -14,22 +11,16 @@ func TestMessage(t *testing.T) {
 	}
 }
 
-// TestAdd verifies that the Add function correctly sums two integers.
-// This fundamental arithmetic test validates core functionality.
-// The CI/CD pipeline uses this as a quality gate before deployment.
 func TestAdd(t *testing.T) {
 	if got := Add(2, 3); got != 5 {
 		t.Fatalf("Add(2, 3) = %d, want 5", got)
 	}
 	
-	// Additional test with negative numbers
 	if got := Add(-5, -3); got != -8 {
 		t.Fatalf("Add(-5, -3) = %d, want -8", got)
 	}
 }
 
-// TestMultiply verifies the multiplication operation with various inputs.
-// Multiplication is used in calculations throughout the application.
 func TestMultiply(t *testing.T) {
 	tests := []struct {
 		a, b     int
@@ -48,8 +39,6 @@ func TestMultiply(t *testing.T) {
 	}
 }
 
-// TestSquare verifies that squaring an integer produces the correct result.
-// Square is n multiplied by itself (n²).
 func TestSquare(t *testing.T) {
 	tests := []struct {
 		input    int
@@ -69,8 +58,6 @@ func TestSquare(t *testing.T) {
 	}
 }
 
-// TestSubtract verifies the subtraction operation with various test cases.
-// Subtraction complements Add for complete arithmetic support.
 func TestSubtract(t *testing.T) {
 	tests := []struct {
 		a, b     int
@@ -89,8 +76,6 @@ func TestSubtract(t *testing.T) {
 	}
 }
 
-// TestIsEven verifies the even number detection logic.
-// This test covers both even and odd numbers including edge cases.
 func TestIsEven(t *testing.T) {
 	tests := []struct {
 		name string
@@ -113,9 +98,6 @@ func TestIsEven(t *testing.T) {
 	}
 }
 
-// TestBuildReport verifies the report formatting function.
-// BuildReport combines multiple arithmetic operations into a formatted string.
-// This test ensures all components are correctly calculated and formatted.
 func TestBuildReport(t *testing.T) {
 	got := BuildReport("sam", 2, 3)
 	want := "hello sam | sum=5 | product=6 | square=4 | difference=-1 | even=true"
@@ -124,7 +106,6 @@ func TestBuildReport(t *testing.T) {
 		t.Fatalf("BuildReport(\"sam\", 2, 3) = %q, want %q", got, want)
 	}
 	
-	// Additional test with different values
 	got2 := BuildReport("alice", 10, 5)
 	want2 := "hello alice | sum=15 | product=50 | square=100 | difference=5 | even=true"
 	if got2 != want2 {
