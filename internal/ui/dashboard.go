@@ -10,35 +10,24 @@ import (
 	"time"
 )
 
-// stateFileName is the name of the JSON file used to persist task completion state.
-// This file stores which tasks have been marked as done by the user.
 const stateFileName = ".task-state.json"
 
-// Task represents a single checklist item displayed on the dashboard.
-// Each task tracks its name, completion status, and optional completion date.
-// The Suggested field indicates whether this is a recommended learning activity.
 type Task struct {
-	Name      string `json:"name"`                // Display name of the task
-	Done      bool   `json:"done"`                // Whether the task has been completed
-	DoneAt    string `json:"done_at,omitempty"`   // Date when task was completed (YYYY-MM-DD format)
-	Suggested bool   `json:"suggested,omitempty"` // Whether this is a suggested task
+	Name      string `json:"name"`
+	Done      bool   `json:"done"`
+	DoneAt    string `json:"done_at,omitempty"`
+	Suggested bool   `json:"suggested,omitempty"`
 }
 
-// PageData holds all the values needed to render the dashboard HTML page.
-// This struct is passed to the template engine for generating the UI.
 type PageData struct {
-	Title       string   // Page title shown in browser tab and header
-	Description string   // Subtitle/description of the dashboard
-	Message     string   // Current status message from the application
-	Report      string   // Formatted report string from app.BuildReport()
-	Notes       []string // List of documentation notes/tips to display
-	Tasks       []Task   // Slice of tasks to display in the checklist
+	Title       string
+	Description string
+	Message     string
+	Report      string
+	Notes       []string
+	Tasks       []Task
 }
 
-// dashboardTmpl is the HTML template for the CI/CD learning dashboard.
-// It includes embedded CSS for styling and uses Go's html/template package.
-// The template displays: hero section with status, task board, and documentation notes.
-// Features responsive design that adapts to mobile and desktop screens.
 var dashboardTmpl = template.Must(template.New("dashboard").Parse(`
 <!doctype html>
 <html lang="en">
@@ -245,10 +234,6 @@ var dashboardTmpl = template.Must(template.New("dashboard").Parse(`
 `))
 
 // DefaultTasks returns the default checklist of learning activities for the dashboard.
-// These tasks guide users through the CI/CD learning journey step by step.
-// Each task represents a small, achievable learning goal.
-// Returns:
-//   - []Task: slice of predefined tasks covering basic to advanced CI/CD concepts
 func DefaultTasks() []Task {
 	return []Task{
 		{Name: "Read the task board in the website"},
@@ -274,9 +259,6 @@ func DefaultTasks() []Task {
 }
 
 // DefaultNotes returns the short documentation panel content shown on the dashboard.
-// These notes provide guidance and tips for navigating the learning project.
-// Returns:
-//   - []string: slice of helpful notes and instructions
 func DefaultNotes() []string {
 	return []string{
 		"Keep the app small and readable.",
@@ -289,31 +271,18 @@ func DefaultNotes() []string {
 }
 
 // LoadTasks loads task completion state from disk if the state file exists.
-// If no state file is found, it returns the default task list.
-// The state is stored as JSON in the .task-state.json file.
-// Parameters:
-//   - dir: directory path where the state file should be located
-//
-// Returns:
-//   - []Task: loaded tasks with their completion state, or defaults if file doesn't exist
-//   - error: any error encountered during file reading or JSON parsing
 func LoadTasks(dir string) ([]Task, error) {
-	// Start with default tasks
 	tasks := DefaultTasks()
 	path := filepath.Join(dir, stateFileName)
 
-	// Try to read the state file
 	data, err := os.ReadFile(path)
 	if err != nil {
-		// Return defaults if file doesn't exist (not an error condition)
 		if os.IsNotExist(err) {
 			return tasks, nil
 		}
-		// Return error for other read failures
 		return nil, err
 	}
 
-	// Parse JSON data into tasks slice
 	if err := json.Unmarshal(data, &tasks); err != nil {
 		return nil, err
 	}
@@ -321,44 +290,25 @@ func LoadTasks(dir string) ([]Task, error) {
 }
 
 // SaveTasks writes the current task state to disk as JSON.
-// This persists user progress so it survives page refreshes and server restarts.
-// Parameters:
-//   - dir: directory path where the state file should be written
-//   - tasks: slice of tasks with their current completion state
-//
-// Returns:
-//   - error: any error encountered during JSON marshaling or file writing
 func SaveTasks(dir string, tasks []Task) error {
 	path := filepath.Join(dir, stateFileName)
 
-	// Marshal tasks to formatted JSON
 	data, err := json.MarshalIndent(tasks, "", "  ")
 	if err != nil {
 		return err
 	}
 
-	// Write to file with standard permissions (readable/writable by owner, readable by others)
 	return os.WriteFile(path, data, 0o644)
 }
 
 // UpdateTaskStatus updates a specific task's completion status and timestamp.
-// When marking a task as done, it records the current date. When undoing, it clears the date.
-// Parameters:
-//   - tasks: slice of tasks to update (modified in place)
-//   - taskName: name of the task to update (exact match required)
-//   - done: true to mark complete, false to mark incomplete
-//
-// Returns:
-//   - []Task: the updated tasks slice (same reference as input)
 func UpdateTaskStatus(tasks []Task, taskName string, done bool) []Task {
 	for i := range tasks {
 		if tasks[i].Name == taskName {
 			tasks[i].Done = done
 			if done {
-				// Record completion date in YYYY-MM-DD format
 				tasks[i].DoneAt = time.Now().Format("2006-01-02")
 			} else {
-				// Clear completion date when marking as not done
 				tasks[i].DoneAt = ""
 			}
 		}
@@ -367,15 +317,7 @@ func UpdateTaskStatus(tasks []Task, taskName string, done bool) []Task {
 }
 
 // RenderDashboard generates an HTML dashboard page from the provided data.
-// It applies default values for any empty fields and executes the HTML template.
-// Parameters:
-//   - data: PageData struct containing all information to display
-//
-// Returns:
-//   - string: rendered HTML as a string
-//   - error: any template execution error
 func RenderDashboard(data PageData) (string, error) {
-	// Apply sensible defaults for empty fields
 	if data.Title == "" {
 		data.Title = "CI/CD dashboard"
 	}
@@ -389,19 +331,16 @@ func RenderDashboard(data PageData) (string, error) {
 		data.Report = fmt.Sprintf("No report data yet for %s.", data.Title)
 	}
 
-	// Use default tasks if none provided
 	if len(data.Tasks) == 0 {
 		for _, task := range DefaultTasks() {
 			data.Tasks = append(data.Tasks, task)
 		}
 	}
 
-	// Use default notes if none provided
 	if len(data.Notes) == 0 {
 		data.Notes = DefaultNotes()
 	}
 
-	// Execute template and capture output
 	var buf bytes.Buffer
 	if err := dashboardTmpl.Execute(&buf, data); err != nil {
 		return "", err
