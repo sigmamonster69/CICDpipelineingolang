@@ -10,29 +10,22 @@ import (
 	"time"
 )
 
-// stateFileName is the name of the JSON file used to persist task completion state.
-// This file stores which tasks have been marked as done by the user.
 const stateFileName = ".task-state.json"
 
-// Task represents a single checklist item displayed on the dashboard.
-// Each task tracks its name, completion status, and optional completion date.
-// The Suggested field indicates whether this is a recommended learning activity.
 type Task struct {
-	Name      string `json:"name"`                // Display name of the task
-	Done      bool   `json:"done"`                // Whether the task has been completed
-	DoneAt    string `json:"done_at,omitempty"`   // Date when task was completed (YYYY-MM-DD format)
-	Suggested bool   `json:"suggested,omitempty"` // Whether this is a suggested task
+	Name      string `json:"name"`
+	Done      bool   `json:"done"`
+	DoneAt    string `json:"done_at,omitempty"`
+	Suggested bool   `json:"suggested,omitempty"`
 }
 
-// PageData holds all the values needed to render the dashboard HTML page.
-// This struct is passed to the template engine for generating the UI.
 type PageData struct {
-	Title       string   // Page title shown in browser tab and header
-	Description string   // Subtitle/description of the dashboard
-	Message     string   // Current status message from the application
-	Report      string   // Formatted report string from app.BuildReport()
-	Notes       []string // List of documentation notes/tips to display
-	Tasks       []Task   // Slice of tasks to display in the checklist
+	Title       string
+	Description string
+	Message     string
+	Report      string
+	Notes       []string
+	Tasks       []Task
 }
 
 // dashboardTmpl is the HTML template for the CI/CD learning dashboard.
