@@ -2,7 +2,7 @@
 
 A small Go-based CI/CD learning scaffold.
 
-## What is in this repo
+## What is in this repo really cool shit and alsocool stuff
 
 - `cmd/cicd-demo/main.go` - a tiny Go app to build in CI
 - `cmd/cicd-dashboard/main.go` - a tiny browser dashboard for the same project
