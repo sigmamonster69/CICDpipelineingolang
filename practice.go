@@ -9,7 +9,7 @@ func Greeting(name string) string {
 	return fmt.Sprintf("Hello, %s!", name)
 }
 
-// Add returns the sum of two integers.
+// Add returns the sum of two integers. similar to the template function ≈
 func Add(a, b int) int {
 	return a + b
 }
