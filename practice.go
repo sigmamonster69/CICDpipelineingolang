@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-// Greeting returns a personalized greeting message for the given name.
+// Greetinsssssg returns a personalized greeting message for the given name.
 func Greeting(name string) string {
 	return fmt.Sprintf("Hello, %s!", name)
 }
