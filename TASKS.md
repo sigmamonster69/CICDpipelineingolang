@@ -19,7 +19,7 @@ go test -v ./...
 ```
 
 **What to observe:**
-- All tests should pass ✅
+- All tests should pass ✅ and be correct 
 - You should see "Welcome to our CI/CD Demo App!" output
 - This is exactly what the CI pipeline runs automatically!
 
