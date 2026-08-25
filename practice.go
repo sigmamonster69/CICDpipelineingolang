@@ -39,7 +39,7 @@ func ReverseString(s string) string {
 	return string(runes)
 }
 
-// IsPalindrome reports whether a string reads the same forwards and backwards.
+// IsPalindrome reports whether a string reads the same forwards and backwards. also changes the value
 func IsPalindrome(s string) bool {
 	return ReverseString(s) == s
 }
