@@ -19,7 +19,7 @@ A small Go-based CI/CD learning scaffold.
 
 ## What this teaches
 
-- How CI runs on every push and pull request
+- Hows CI runs on every push and pull request
 - How a Go build fits into automation
 - How tests make the pipeline more useful than a compile-only check
 - How simple Go functions and tests fit into a pipeline
